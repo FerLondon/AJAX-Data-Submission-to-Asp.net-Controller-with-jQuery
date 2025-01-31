@@ -1,6 +1,5 @@
-// Create a file in the name AjaxOnlyAttribute, paste the code below.
-// Remember to change the namespace "MySite".Models
-
+// Create a file named AjaxOnlyAttribute and paste the code below.
+// Make sure to update the namespace to match your project, e.g., MySite.Models.
 
 using System.Web.Mvc;
 
