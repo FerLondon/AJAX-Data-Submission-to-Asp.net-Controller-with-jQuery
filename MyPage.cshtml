@@ -1,0 +1,43 @@
+
+////////////////////////////////////////////////////////////
+// BUTTON - ADD TO CART, CHECK QUANTITY ////////////////////
+////////////////////////////////////////////////////////////
+$("#btn-add-to-cart").on("click", function () {
+
+    var quantity = $("#shopping-stock-quantity");
+    var productId = $("#shopping-stock-quantity").attr("id-prod");
+    var quantityValue = $("#shopping-stock-quantity").val();
+
+    var data = {
+        id: productId,
+        quantity: quantityValue,
+    };
+
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: "/Shopping/AddToCart",
+        data: JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+
+            // If an error message exists //
+            if (data.msg != null) {
+                $(".shopping-detail-msg").text(data.msg);
+            }
+            else {
+                // Clear class
+                $(".detail-product-middle").empty();
+
+                //$('#screen, #modal').show(); // Show pages //
+                $("#modal_area").html(data); // Update the modal window //
+            }
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Failed to get session: " + errorThrown);
+        }
+    });
+
+    return false;
+});
